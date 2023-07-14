@@ -8,6 +8,7 @@ const authSchema = new mongoose_1.default.Schema({
     userName: {
         type: String,
         require: true,
+        unique: true,
     },
     email: {
         type: String,
