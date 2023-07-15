@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProgress = exports.readProgress = exports.createProgress = void 0;
+exports.deleteProgress = exports.readProgressDetail = exports.readProgress = exports.createProgress = void 0;
 const authModel_1 = __importDefault(require("../model/authModel"));
 const progressModel_1 = __importDefault(require("../model/progressModel"));
 const createProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,6 +35,7 @@ const createProgress = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createProgress = createProgress;
 const readProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { id } = req.params;
         const tasked = yield progressModel_1.default.find();
         res.status(200).json({
             message: "task read",
@@ -48,6 +49,27 @@ const readProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.readProgress = readProgress;
+const readProgressDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const tasked = yield progressModel_1.default.findById(id).populate({
+            path: "step",
+            options: {
+                sort: { createdAt: -1 },
+            },
+        });
+        res.status(200).json({
+            message: "task read",
+            data: tasked,
+        });
+    }
+    catch (error) {
+        res.status(404).json({
+            message: "Error reading task",
+        });
+    }
+});
+exports.readProgressDetail = readProgressDetail;
 const deleteProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

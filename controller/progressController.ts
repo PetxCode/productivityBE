@@ -25,6 +25,7 @@ export const createProgress = async (req: Request, res: Response) => {
 
 export const readProgress = async (req: Request, res: Response) => {
   try {
+    const { id } = req.params;
     const tasked = await progressModel.find();
 
     res.status(200).json({
@@ -37,6 +38,29 @@ export const readProgress = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const readProgressDetail = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const tasked = await progressModel.findById(id).populate({
+      path: "step",
+      options: {
+        sort: { createdAt: -1 },
+      },
+    });
+
+    res.status(200).json({
+      message: "task read",
+      data: tasked,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "Error reading task",
+    });
+  }
+};
+
+
 
 export const deleteProgress = async (req: Request, res: Response) => {
   try {
