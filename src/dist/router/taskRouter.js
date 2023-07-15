@@ -9,5 +9,5 @@ const router = express_1.default.Router();
 router.route("/:id/create-task").post(taskController_1.createTask);
 router.route("/view-tasks").get(taskController_1.readTask);
 router.route("/:id/delete-task").delete(taskController_1.deleteTask);
-router.route("/:id/update-task").patch(taskController_1.updateStateTask);
+router.route("/:id/update-one-task").patch(taskController_1.updateStateTask);
 exports.default = router;
