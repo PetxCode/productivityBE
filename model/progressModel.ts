@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import { iTask } from "../utils/interfaces";
+import { iProgress, iTask } from "../utils/interfaces";
 
+interface iProgressData extends iProgress, mongoose.Document {}
 
-interface iTaskData extends iTask, mongoose.Document {}
-
-const taskSchema = new mongoose.Schema(
+const progressSchema = new mongoose.Schema(
   {
     task: {
       type: String,
@@ -29,4 +28,4 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.model<iTaskData>("tasks", taskSchema);
+export default mongoose.model<iProgressData>("progresss", progressSchema);

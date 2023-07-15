@@ -1,12 +1,5 @@
 import mongoose from "mongoose";
-
-export interface iStep {
-  assignedTask?: string;
-  assignedAvatar?: string;
-  assignedName?: string;
-  assignedPriority?: string;
-  task?: {};
-}
+import { iStep } from "../utils/interfaces";
 
 interface iStepData extends iStep, mongoose.Document {}
 
