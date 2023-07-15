@@ -10,12 +10,7 @@ export const createProgress = async (req: Request, res: Response) => {
 
     const user = await authModel.findById(id);
 
-    const tasked = await progressModel.create({
-      name: user?.userName,
-      task,
-      priority,
-      avatar: user?.avatar,
-    });
+    const tasked = await progressModel.create(req.body);
 
     res.status(201).json({
       message: "task created",

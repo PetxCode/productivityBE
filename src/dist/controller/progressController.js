@@ -20,12 +20,7 @@ const createProgress = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const { id } = req.params;
         const { task, priority } = req.body;
         const user = yield authModel_1.default.findById(id);
-        const tasked = yield progressModel_1.default.create({
-            name: user === null || user === void 0 ? void 0 : user.userName,
-            task,
-            priority,
-            avatar: user === null || user === void 0 ? void 0 : user.avatar,
-        });
+        const tasked = yield progressModel_1.default.create(req.body);
         res.status(201).json({
             message: "task created",
             data: tasked,
