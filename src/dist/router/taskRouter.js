@@ -10,4 +10,5 @@ router.route("/:id/create-task").post(taskController_1.createTask);
 router.route("/view-tasks").get(taskController_1.readTask);
 router.route("/:id/delete-task").delete(taskController_1.deleteTask);
 router.route("/:id/update-one-task").patch(taskController_1.updateStateTask);
+router.route("/:id/view-one-task").get(taskController_1.readOneTask);
 exports.default = router;
