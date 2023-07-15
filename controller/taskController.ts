@@ -42,6 +42,27 @@ export const readTask = async (req: Request, res: Response) => {
   }
 };
 
+export const updateStateTask = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { stateData } = req.body;
+    const tasked = await taskModel.findByIdAndUpdate(
+      id,
+      { stateData },
+      { new: true },
+    );
+
+    res.status(200).json({
+      message: "task read",
+      data: tasked,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "Error reading task",
+    });
+  }
+};
+
 export const deleteTask = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

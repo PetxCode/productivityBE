@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTask = exports.readTask = exports.createTask = void 0;
+exports.deleteTask = exports.updateStateTask = exports.readTask = exports.createTask = void 0;
 const taskModel_1 = __importDefault(require("../model/taskModel"));
 const authModel_1 = __importDefault(require("../model/authModel"));
 const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -53,6 +53,23 @@ const readTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.readTask = readTask;
+const updateStateTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { stateData } = req.body;
+        const tasked = yield taskModel_1.default.findByIdAndUpdate(id, { stateData }, { new: true });
+        res.status(200).json({
+            message: "task read",
+            data: tasked,
+        });
+    }
+    catch (error) {
+        res.status(404).json({
+            message: "Error reading task",
+        });
+    }
+});
+exports.updateStateTask = updateStateTask;
 const deleteTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

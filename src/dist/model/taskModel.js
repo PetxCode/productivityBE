@@ -18,6 +18,9 @@ const taskSchema = new mongoose_1.default.Schema({
     avatar: {
         type: String,
     },
+    stateData: {
+        type: Boolean,
+    },
     step: [
         {
             type: mongoose_1.default.Types.ObjectId,

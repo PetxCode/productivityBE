@@ -19,6 +19,9 @@ const taskSchema = new mongoose.Schema(
     avatar: {
       type: String,
     },
+    stateData: {
+      type: Boolean,
+    },
     step: [
       {
         type: mongoose.Types.ObjectId,

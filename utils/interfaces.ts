@@ -18,6 +18,7 @@ export interface iTask {
   avatar?: string;
   name?: string;
   priority?: string;
+  stateData?: boolean;
   step?: {}[];
 }
 
