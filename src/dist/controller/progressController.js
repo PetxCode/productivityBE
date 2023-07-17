@@ -13,13 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProgress = exports.readProgressDetail = exports.readProgress = exports.createProgress = void 0;
-const authModel_1 = __importDefault(require("../model/authModel"));
 const progressModel_1 = __importDefault(require("../model/progressModel"));
 const createProgress = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        const { task, priority } = req.body;
-        const user = yield authModel_1.default.findById(id);
         const tasked = yield progressModel_1.default.create(req.body);
         res.status(201).json({
             message: "task created",

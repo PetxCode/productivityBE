@@ -5,11 +5,6 @@ import progressModel from "../model/progressModel";
 
 export const createProgress = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const { task, priority } = req.body;
-
-    const user = await authModel.findById(id);
-
     const tasked = await progressModel.create(req.body);
 
     res.status(201).json({

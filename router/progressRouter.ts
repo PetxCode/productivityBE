@@ -8,7 +8,7 @@ import {
 
 const router: Router = express.Router();
 
-router.route("/:id/create-progress").post(createProgress);
+router.route("/create-progress").post(createProgress);
 
 router.route("/view-progress").get(readProgress);
 router.route("/:id/view-progress-info").get(readProgressDetail);
