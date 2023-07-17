@@ -12,8 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readOneDoneUser = exports.readDoneUsers = exports.doneCreateUser = void 0;
+exports.deleteProgressStep = exports.readOneDoneUser = exports.readDoneUsers = exports.doneCreateUser = void 0;
 const doneModel_1 = __importDefault(require("../model/doneModel"));
+const progressModel_1 = __importDefault(require("../model/progressModel"));
+const stepModel_1 = __importDefault(require("../model/stepModel"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const doneCreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { doneName, doneTask, doneAvatar, donePriority } = req.body;
@@ -25,7 +28,7 @@ const doneCreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
         res.status(201).json({
             message: " done created",
-            data: user
+            data: user,
         });
     }
     catch (error) {
@@ -66,3 +69,18 @@ const readOneDoneUser = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.readOneDoneUser = readOneDoneUser;
+const deleteProgressStep = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    try {
+        const { progressId, progressStepId } = req.params;
+        const progress = yield progressModel_1.default.findById(progressId);
+        const removeStep = yield stepModel_1.default.findById(progressStepId);
+        const anything = yield ((_a = progress === null || progress === void 0 ? void 0 : progress.step) === null || _a === void 0 ? void 0 : _a.pull(new mongoose_1.default.Types.ObjectId(removeStep._id)));
+        progress.save();
+        res.status(201).json({
+            message: "removing",
+        });
+    }
+    catch (error) { }
+});
+exports.deleteProgressStep = deleteProgressStep;

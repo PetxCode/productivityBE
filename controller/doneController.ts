@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import doneModel from "../model/doneModel";
+import progressModel from "../model/progressModel";
+import stepModel from "../model/stepModel";
+import mongoose from "mongoose";
 
 export const doneCreateUser = async (req: Request, res: Response) => {
   try {
     const { doneName, doneTask, doneAvatar, donePriority } = req.body;
-
 
     const user = await doneModel.create({
       doneName,
@@ -16,7 +18,7 @@ export const doneCreateUser = async (req: Request, res: Response) => {
 
     res.status(201).json({
       message: " done created",
-      data: user
+      data: user,
     });
   } catch (error) {
     res.status(404).json({
@@ -24,8 +26,6 @@ export const doneCreateUser = async (req: Request, res: Response) => {
     });
   }
 };
-
-
 
 export const readDoneUsers = async (req: Request, res: Response) => {
   try {
@@ -58,4 +58,20 @@ export const readOneDoneUser = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteProgressStep = async (req: Request, res: Response) => {
+  try {
+    const { progressId, progressStepId } = req.params;
+    const progress: any = await progressModel.findById(progressId);
 
+    const removeStep = await stepModel.findById(progressStepId);
+
+    const anything: any = await progress?.step?.pull(
+      new mongoose.Types.ObjectId(removeStep!._id),
+    );
+    progress!.save();
+
+    res.status(201).json({
+      message: "removing",
+    });
+  } catch (error) {}
+};
