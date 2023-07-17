@@ -5,22 +5,16 @@ interface iDoneData extends iDone, mongoose.Document {}
 
 const doneSchema = new mongoose.Schema(
   {
-    userName: {
+    assignedName: {
       type: String,
-      require: true,
-      unique: true,
     },
-    email: {
+    assignedTask: {
       type: String,
-      require: true,
-      trim: true,
-      unique: true,
     },
-    password: {
+    assignedPriority: {
       type: String,
-      require: true,
     },
-    avatar: {
+    assignedAvatar: {
       type: String,
     },
   },

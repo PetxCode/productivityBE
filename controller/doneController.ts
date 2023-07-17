@@ -9,12 +9,7 @@ export const doneCreateUser = async (req: Request, res: Response) => {
   try {
     const { doneName, doneTask, doneAvatar, donePriority } = req.body;
 
-    const user = await doneModel.create({
-      doneName,
-      doneTask,
-      doneAvatar,
-      donePriority,
-    });
+    const user = await doneModel.create(req.body);
 
     res.status(201).json({
       message: " done created",

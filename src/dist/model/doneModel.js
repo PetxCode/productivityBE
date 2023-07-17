@@ -5,22 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const doneSchema = new mongoose_1.default.Schema({
-    userName: {
+    assignedName: {
         type: String,
-        require: true,
-        unique: true,
     },
-    email: {
+    assignedTask: {
         type: String,
-        require: true,
-        trim: true,
-        unique: true,
     },
-    password: {
+    assignedPriority: {
         type: String,
-        require: true,
     },
-    avatar: {
+    assignedAvatar: {
         type: String,
     },
 }, { timestamps: true });

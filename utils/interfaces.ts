@@ -13,6 +13,14 @@ export interface iStep {
   task?: {};
 }
 
+export interface iDone {
+  assignedTask?: string;
+  assignedAvatar?: string;
+  assignedName?: string;
+  assignedPriority?: string;
+  task?: {};
+}
+
 export interface iTask {
   task?: string;
   avatar?: string;
@@ -31,10 +39,3 @@ export interface iProgress {
   step?: {}[];
 }
 
-export interface iDone {
-  doneTask?: string;
-  doneAvatar?: string;
-  doneName?: string;
-  donePriority?: string;
-  doneStep?: {}[];
-}

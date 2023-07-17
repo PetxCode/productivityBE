@@ -20,12 +20,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const doneCreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { doneName, doneTask, doneAvatar, donePriority } = req.body;
-        const user = yield doneModel_1.default.create({
-            doneName,
-            doneTask,
-            doneAvatar,
-            donePriority,
-        });
+        const user = yield doneModel_1.default.create(req.body);
         res.status(201).json({
             message: " done created",
             data: user,
