@@ -30,3 +30,11 @@ export interface iProgress {
   priority?: string;
   step?: {}[];
 }
+
+export interface iDone {
+  doneTask?: string;
+  doneAvatar?: string;
+  doneName?: string;
+  donePriority?: string;
+  doneStep?: {}[];
+}

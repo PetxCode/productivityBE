@@ -10,6 +10,7 @@ const authRouter_1 = __importDefault(require("./router/authRouter"));
 const taskRouter_1 = __importDefault(require("./router/taskRouter"));
 const stepRoute_1 = __importDefault(require("./router/stepRoute"));
 const progressRouter_1 = __importDefault(require("./router/progressRouter"));
+const doneRouter_1 = __importDefault(require("./router/doneRouter"));
 const mainApp = (app) => {
     app
         .use((0, cors_1.default)())
@@ -18,6 +19,7 @@ const mainApp = (app) => {
         .use("/api/v1/task", taskRouter_1.default)
         .use("/api/v1/step", stepRoute_1.default)
         .use("/api/v1/progress", progressRouter_1.default)
+        .use("/api/v1/done", doneRouter_1.default)
         .get("/", (req, res) => {
         try {
             res.status(200).json({

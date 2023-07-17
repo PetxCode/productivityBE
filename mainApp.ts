@@ -4,6 +4,7 @@ import auth from "./router/authRouter";
 import task from "./router/taskRouter";
 import step from "./router/stepRoute";
 import progress from "./router/progressRouter";
+import doneRouter from "./router/doneRouter";
 
 export const mainApp = (app: Application) => {
   app
@@ -13,6 +14,7 @@ export const mainApp = (app: Application) => {
     .use("/api/v1/task", task)
     .use("/api/v1/step", step)
     .use("/api/v1/progress", progress)
+    .use("/api/v1/done", doneRouter)
 
     .get("/", (req: Request, res: Response) => {
       try {
