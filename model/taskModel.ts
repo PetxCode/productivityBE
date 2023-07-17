@@ -13,6 +13,9 @@ const taskSchema = new mongoose.Schema(
     name: {
       type: String,
     },
+    stepToggle: {
+      type: Boolean,
+    },
     priority: {
       type: String,
     },

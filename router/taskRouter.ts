@@ -4,12 +4,14 @@ import {
   deleteTask,
   readOneTask,
   readTask,
+  updateOneTask,
   updateStateTask,
 } from "../controller/taskController";
 
 const router: Router = express.Router();
 
 router.route("/:id/create-task").post(createTask);
+router.route("/:id/update-task-step").patch(updateOneTask);
 
 router.route("/view-tasks").get(readTask);
 router.route("/:id/delete-task").delete(deleteTask);

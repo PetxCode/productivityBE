@@ -19,6 +19,7 @@ export interface iTask {
   name?: string;
   priority?: string;
   stateData?: boolean;
+  stepToggle?: boolean;
   step?: {}[];
 }
 
